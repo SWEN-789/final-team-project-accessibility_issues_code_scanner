@@ -16,10 +16,15 @@
 			<version>3.9</version>
 		</dependency>
 		<dependency>
+		    <groupId>org.eclipse.jdt</groupId>
+		    <artifactId>org.eclipse.jdt.core</artifactId>
+		    <version>3.7.1</version>
+		</dependency>
+		<!-- <dependency>
 			<groupId>rit.se</groupId>
 			<artifactId>MILK-ASTParser</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		</dependency> -->
 	</dependencies>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
