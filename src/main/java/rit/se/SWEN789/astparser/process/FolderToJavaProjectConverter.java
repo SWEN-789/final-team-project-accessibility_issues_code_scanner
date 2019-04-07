@@ -79,6 +79,10 @@ public class FolderToJavaProjectConverter {
                         for (File javaFile : javaFiles) {
                             System.out.println(javaFile.getAbsolutePath());
                             CompilationUnit parsed = codeParser.createParser(FileUtilities.readFile(javaFile.getAbsolutePath()));
+                            
+                            if (parsed.types().size() == 0) 
+                            	continue;
+                            
                             TypeDeclaration typeDeclaration = (TypeDeclaration) parsed.types().get(0);
 
                             ArrayList<String> imports = new ArrayList<>();

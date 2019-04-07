@@ -1,0 +1,70 @@
+************************************************************
+              24 GAME AGG
+************************************************************
+
+24 Game is a fun artimetic game. ...
+
+More descriptions and exact rules:
+[http://en.wikipedia.org/wiki/]
+
+
+************************************************************
+BASIC INSTALLATION
+
+It is possible to use X11, Win32-API or SDL1.2 as a UI platform. 
+On Unix systems You should use X11 or SDL1.2 (http://www.libsdl.org/)
+On Windows you could use either native API, native SDL library or X11/SDL
+through CYGWIN
+
+If libraries are installed in non-standard location update CPPFLAGS and LDFLAGS
+environment variables and run waf:
+$ ./waf configure [--platform=sdl/win/x11]
+$ ./waf
+
+
+
+
+************************************************************
+CREDIT 
+
+The Anti Grain Geometry-2.5 (http://www.antigrain.com/) is used and included in
+this package.
+
+
+
+************************************************************
+HOW TO CONTRIBUTE
+
+If You have access to project repository feel free to push all changes. Else
+please contact authors.
+
+Project is currently hosted at BitBucket. Please visit:
+https://bitbucket.org/przemekr/24game
+for the latest updates.
+
+
+
+************************************************************
+LICENSE
+
+24 game is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+24 game is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+24 game.  If not, see <http://www.gnu.org/licenses/>.
+Installation Instructions
+*************************
+
+Copyright (C) 1994, 1995, 1996, 1999, 2000, 2001, 2002, 2004, 2005,
+2006, 2007, 2008, 2009 Free Software Foundation, Inc.
+
+   Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.  This file is offered as-is,
+without warranty of any kind.
