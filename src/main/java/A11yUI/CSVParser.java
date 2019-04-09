@@ -22,6 +22,8 @@ public class CSVParser {
         try { // Try opening the file, scanning the results in line by line, and returning the results
             ArrayList<ArrayList<String>> lines = new ArrayList<>();
             Scanner scanner = new Scanner(new File(fileName));
+            scanner.nextLine(); //Skip title line
+
 
             while (scanner.hasNext()) { // Loop through each line and add it to the ArrayList
                 ArrayList<String> line = parseLine(scanner.nextLine());
