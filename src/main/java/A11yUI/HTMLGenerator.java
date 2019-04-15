@@ -44,13 +44,14 @@ public class HTMLGenerator {
         htmlString += "     </div>\n"; //Close the error sections
 
 
-        htmlString += generateStatistics(); //Generate the statistics div (displayed top right)
+        //htmlString += generateStatistics(); //Generate the statistics div (displayed top right)
+        htmlString += generateChart(); //Gemerate the data visualizations (displayed top right)
 
         //Close all open divs (full page containers, body, and html tags)
         htmlString +=   "   </div>\n" +
-                "</div>\n" +
-                "</body>\n" +
-                "</html>";
+                        "</div>\n" +
+                        "</body>\n" +
+                        "</html>";
 
         return htmlString;
     }
@@ -61,22 +62,26 @@ public class HTMLGenerator {
      */
     public String generateHead() {
         return "<!DOCTYPE html>\n" +
-                "<html lang='en'>\n" +
-                "<head>\n" +
-                "   <title>" + projectTitle + "</title>\n" +
-                "   <meta charse ='utf-8' />\n" +
-                "   <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous'></script>\n" + //jQuery CDN link
-                "   <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js' integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49' crossorigin='anonymous'></script>\n" + //Popper JS CDN (needed for bootstrap)
-                "   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>\n" + //Bootstrap CS CDN
-                "   <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'></script>\n" + //Bootstrap JS CDN
-                "   <style>\n" + //Custom page styling
-                "       .collapseBtn { margin-bottom: 15px; margin-left: 10px}\n" +
-                "       #statsSection { border: 1px solid black; border-radius: 30px;}\n" +
-                "       body {width: 90%; margin: 0 auto; background-color: #E6E6E6}\n" +
-                "       .container-fluid {background-color: white; padding: 25px; border-radius: 0 0 30px 30px;}\n" +
-                "   </style>\n" +
-                "</head>\n" +
-                "<body>\n";
+            "<html lang='en'>\n" +
+            "<head>\n" +
+		    "   <title>" + projectTitle + "</title>\n" +
+		    "   <meta charse ='utf-8' />\n" +
+            "   <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous'></script>\n" + //jQuery CDN link
+            "   <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js' integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49' crossorigin='anonymous'></script>\n" + //Popper JS CDN (needed for bootstrap)
+		    "   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>\n" + //Bootstrap CS CDN
+            "   <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'></script>\n" + //Bootstrap JS CDN
+            "   <script type='text/javascript' src='https://canvasjs.com/assets/script/jquery.canvasjs.min.js'></script>" + //JS for Graph-based data visualization
+            "   <style>\n" + //Custom page styling
+            "       .collapseBtn { margin-bottom: 15px; margin-left: 10px;}\n" +
+            "       #statsSection { border: 1px solid black; border-radius: 30px;}\n" +
+            "       body {width: 90%; margin: 0 auto; background-color: #E6E6E6;}\n" +
+            "       .container-fluid {background-color: white; padding: 25px; border-radius: 0 0 30px 30px;}\n" +
+            "       #chartContainer {width: 425px; height: 425px; float: right; margin-right: 35px;}\n" +
+            "       .canvasjs-chart-credit{ display: none !important;}\n" +
+            "       canvas {border-bottom-left-radius: 100px !important;}\n" +
+            "   </style>\n" +
+            "</head>\n" +
+            "<body>\n";
     }
 
     /**
@@ -94,7 +99,7 @@ public class HTMLGenerator {
     public String startSectionContainer() {
         return "<div class='container-fluid'>\n" +
                 "   <div class='row'>\n" +
-                "       <div class='col-md-9 col-lg-9'>\n";
+                "       <div class='col-md-7 col-lg-7'>\n";
     }
 
     /**
@@ -108,14 +113,14 @@ public class HTMLGenerator {
 
         //Creates the container and list for the issues
         String returnString =   "           <div class='section'>\n" +
-                "               <div style='display: inline-block'>" +
-                "                   <span style='text-decoration: underline' class='h2'>" + sectionTitle + "</span>\n" +
-                "                   <span>\n" +
-                "                       <button type='button' class='btn btn-default collapseBtn' type='button' data-toggle='collapse' data-target='#div_" + strippedTitle + "'>Collapse Section</button>\n" +
-                "                   </span>\n" +
-                "               </div>\n" +
-                "               <div class='issueContainer collapse in' id='div_" + strippedTitle + "'>\n" +
-                "                   <ol>\n";
+                                "               <div style='display: inline-block'>" +
+                                "                   <span style='text-decoration: underline' class='h2'>" + sectionTitle + "</span>\n" +
+                                "                   <span>\n" +
+                                "                       <button type='button' class='btn btn-default collapseBtn' type='button' data-toggle='collapse' data-target='#div_" + strippedTitle + "'>Collapse Section</button>\n" +
+                                "                   </span>\n" +
+                                "               </div>\n" +
+                                "               <div class='issueContainer collapse in' id='div_" + strippedTitle + "'>\n" +
+                                "                   <ol>\n";
 
         for(ArrayList<String> issue : section) { //Add each issue to the report
             returnString += generateIssue(issue);
@@ -123,8 +128,8 @@ public class HTMLGenerator {
 
         //Close the containers and return the string
         returnString +=    "               </ol>\n" +
-                "           </div>\n" +
-                "        </div>\n";
+                           "           </div>\n" +
+                           "        </div>\n";
 
         return returnString;
     }
@@ -156,7 +161,32 @@ public class HTMLGenerator {
      * @return chartString HTML for the data visualization
      */
     public String generateChart() {
-        return "";
+        String returnString =   "<div id='chartContainer' class='col-md-5 col-lg-5' style='width: 500px; height: 500px'></div>\n" +
+                                "<script type='text/javascript'>\n" +
+                                "   window.onload = function() {\n" +
+                                "       var options = {\n" +
+                                "           title: {\n" +
+                                "               text: '" + projectTitle + "'\n" +
+                                "           },\n" +
+                                "           data: [{\n" +
+                                "               type: 'pie',\n" +
+                                "               startAngle: 45,\n" +
+                                "               legendText: '{label}',\n" +
+                                "               indexLabel: '{label} ({y})',\n" +
+                                "               yValueFormatString: '#,##0.#'%'',\n" +
+                                "               dataPoints: [\n";
+
+        for (Map.Entry<String, ArrayList<ArrayList<String>>> section : errorMap.entrySet()) { //Loop through the entries in the map and count the list of issues
+            returnString +=     "                   { label: '" + section.getKey() + "', y: " + section.getValue().size() + " },\n";
+        }
+
+        returnString +=         "               ]\n" +
+                                "           }]\n" +
+                                "   };\n" +
+                                "   $('#chartContainer').CanvasJSChart(options);\n" +
+                                "}\n" +
+                                "</script>\n";
+        return returnString;
     }
 
     /**
@@ -177,12 +207,12 @@ public class HTMLGenerator {
 
         //Format and return the HTML string
         String htmlString =    "        <div id='statsSection' class='col-md-3 col-lg-3'>\n" +
-                "           <h1 style='text-decoration: underline; text-align: center'>Project Statistics</h1>\n" +
-                "           <p><strong>Most common issue type: </strong>" + biggestSection + "</p>\n" +
-                "           <p><strong>Section Error Count: </strong>" + Integer.toString(highestCount) + "</p>\n" +
-                "           <br />\n" +
-                "           <p><strong>Count of issue types: </strong>" + errorMap.size() +"</p>\n" +
-                "       </div>\n";
+                                "           <h1 style='text-decoration: underline; text-align: center'>Project Statistics</h1>\n" +
+                                "           <p><strong>Most common issue type: </strong>" + biggestSection + "</p>\n" +
+                                "           <p><strong>Section Error Count: </strong>" + Integer.toString(highestCount) + "</p>\n" +
+                                "           <br />\n" +
+                                "           <p><strong>Count of issue types: </strong>" + errorMap.size() +"</p>\n" +
+                                "       </div>\n";
 
         return htmlString;
     }
