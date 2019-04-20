@@ -2,60 +2,159 @@
 <html lang='en'>
 <head>
    <title>Telegram</title>
-   <meta charse ='utf-8' />
+   <meta charset ='utf-8'>
    <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous'></script>
    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js' integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49' crossorigin='anonymous'></script>
    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'></script>
-   <style>
-       .collapseBtn { margin-bottom: 15px; margin-left: 10px}
-       #statsSection { border: 1px solid black; border-radius: 30px;}
-       body {width: 90%; margin: 0 auto; background-color: #E6E6E6}
-       .container-fluid {background-color: white; padding: 25px; border-radius: 0 0 30px 30px;}
-   </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+}
+.header {
+	background-color: white;  
+	border: 1px; border-radius: 30px 30px 0 0 ;
+	padding-bottom: 60px; 
+	padding-top: 30px;
+	margin-bottom: 2px;
+}
+.content {
+	background-color: white;  
+	border: 1px; border-radius: 0 0 30px 30px;
+	padding-bottom: 60px; 
+	padding-top: 30px;
+	}
+.statistic {
+  float:left;
+  width:25%;
+  text-align:center;
+  border: 1px solid black; border-radius: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color:#E6E6E6;
+  margin-left:1.5%;
+}
+.statistic a {
+  background-color:#E6E6E6;
+  padding:10px;
+  margin-top:7px;
+  display:block;
+  width:100%;
+  color:black;
+}
+.main {
+  float:left;
+  width:65%;
+  padding:0 20px;
+  margin-left:6%;
+}
+.guideline {
+  background-color:#E6E6E6;
+  float:right;
+  width:18%;
+  padding: 3px;
+  padding-right:3px;
+  margin-top:7px;
+  padding-top:0%;
+  margin-right:3%;
+  border: 1px solid black; border-radius: 30px;
+}
+.tb{
+	margin-top:7%;
+	margin-left:33%;
+	margin-right:20%;
+	width:63%;
+	border: none;
+ }
+
+.collapseBtn { 
+	margin-bottom: 10px; padding:5px; background-color:#E6E6E6;
+	}
+.container-fluid {
+	background-color: white; 
+	padding: 5px;
+}
+body {
+	width: 85%; margin: 0 auto; background-color: #E6E6E6;
+	}
+	
+</style>
 </head>
-<body>
-<h1 style='text-align:center; text-decoration: underline; background-color: white; margin-bottom: 0px; padding-bottom: 15px; border-radius: 30px 30px 0 0;'>Telegram Accessibility Report</h1>
-<div class='container-fluid'>
-   <div class='row'>
-       <div class='col-md-9 col-lg-9'>
-           <div class='section'>
-               <div style='display: inline-block'>                   <span style='text-decoration: underline' class='h2'>No Content Description</span>
-                   <span>
-                       <button type='button' class='btn btn-default collapseBtn' type='button' data-toggle='collapse' data-target='#div_No-Content-Description'>Collapse Section</button>
-                   </span>
-               </div>
-               <div class='issueContainer collapse in' id='div_No-Content-Description'>
-                   <ol>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_small_notification.xml#L11'>src/main/res/layout/player_small_notification.xml(line 11)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_small_notification.xml#L19'>src/main/res/layout/player_small_notification.xml(line 19)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_small_notification.xml#L42'>src/main/res/layout/player_small_notification.xml(line 42)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_small_notification.xml#L81'>src/main/res/layout/player_small_notification.xml(line 81)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_small_notification.xml#L91'>src/main/res/layout/player_small_notification.xml(line 91)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_small_notification.xml#L102'>src/main/res/layout/player_small_notification.xml(line 102)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_small_notification.xml#L112'>src/main/res/layout/player_small_notification.xml(line 112)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/call_notification.xml#L18'>src/main/res/layout/call_notification.xml(line 18)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/call_notification.xml#L28'>src/main/res/layout/call_notification.xml(line 28)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_big_notification.xml#L15'>src/main/res/layout/player_big_notification.xml(line 15)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_big_notification.xml#L44'>src/main/res/layout/player_big_notification.xml(line 44)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_big_notification.xml#L100'>src/main/res/layout/player_big_notification.xml(line 100)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_big_notification.xml#L110'>src/main/res/layout/player_big_notification.xml(line 110)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_big_notification.xml#L121'>src/main/res/layout/player_big_notification.xml(line 121)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_big_notification.xml#L131'>src/main/res/layout/player_big_notification.xml(line 131)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/call_notification_rtl.xml#L18'>src/main/res/layout/call_notification_rtl.xml(line 18)</a> comment: android:contentDescription:null</li>
-                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/call_notification_rtl.xml#L28'>src/main/res/layout/call_notification_rtl.xml(line 28)</a> comment: android:contentDescription:null</li>
-               </ol>
-           </div>
-        </div>
-     </div>
-        <div id='statsSection' class='col-md-3 col-lg-3'>
-           <h1 style='text-decoration: underline; text-align: center'>Project Statistics</h1>
-           <p><strong>Most common issue type: </strong>No Content Description</p>
-           <p><strong>Section Error Count: </strong>17</p>
-           <br />
-           <p><strong>Count of issue types: </strong>1</p>
-       </div>
-   </div>
+<body style="font-family:Verdana; color:black">
+<div style="min-width:960px; margin:0 auto">
+
+<div class="header">
+<h1 style='text-align:center; text-decoration:underline; background-color:white'> Telegram Accessibility Report  </h1>
+
 </div>
+
+<div class="content">
+
+  <div> <!--style="overflow:auto; margin-left: 3%; margin-bottom: 3%"-->
+  <div class="guideline">
+  <h3 style='text-decoration:underline; text-align:center'>Accessibility Guidelines</h3>
+		  <br />
+		  <ul style='padding-right:5px'>
+           <li> Android Apps - Missing Content Label <a href="https://support.google.com/accessibility/android/answer/7158690?hl=en"> <strong>Google Support</strong> </a></li>
+		   <li> Make Android apps more accessible<a href="https://developer.android.com/guide/topics/ui/accessibility/apps#media-content"> <strong> Android Guideline </strong></a></li>
+		   </ul>
+		   <br/>
+  </div>
+</div>
+
+<div style="overflow:auto; margin-left:2%; margin-bottom:3%">
+  <div class="statistic">
+  <h3 style='text-decoration: underline; text-align: center'>Project Statistics</h3>
+		  <br />
+           <p><strong>Most common issue type: </strong>No Content Description</p>		   
+           <p><strong>Section Error Count: </strong>17</p>
+           <p><strong>Count of issue types: </strong>1</p>
+		   <br />
+  </div>
+
+  <div class="main">
+   <div style='display: inline-block'>  <span style="color:red" class="h3">Issue Type:</span> 	
+   <span style='text-decoration: underline' class='h3' > No Content Description</span>
+   <button type="button" class='btn btn-default collapseBtn' data-toggle='collapse' data-target='#div_No-Content-Description'>Collapse</button>
+	</div>
+  </div>
+  
+<div class='issueContainer collapse in' id='div_No-Content-Description' >	
+<br/>			  
+			  <table class="tb">
+			   <tr>
+			   <td style='text-align:left'> <h4 style='text-align:center'> <b> Link to the file </b> </h4>
+               <ol style='list-style-position:inside'  type="1">
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_small_notification.xml#L11'>src/main/res/layout/player_small_notification.xml(line 11)</a> <br> <span> comment: android:contentDescription:null </span> <br/> </li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_small_notification.xml#L19'>src/main/res/layout/player_small_notification.xml(line 19)</a> <br> <span> comment: android:contentDescription:null </span> <br/> </li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_small_notification.xml#L42'>src/main/res/layout/player_small_notification.xml(line 42)</a> <br> <span> comment: android:contentDescription:null </span> <br/></li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_small_notification.xml#L81'>src/main/res/layout/player_small_notification.xml(line 81)</a> <br> <span> comment: android:contentDescription:null </span> <br/> </li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_small_notification.xml#L91'>src/main/res/layout/player_small_notification.xml(line 91)</a> <br> <span> comment: android:contentDescription:null </span> <br/> </li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_small_notification.xml#L102'>src/main/res/layout/player_small_notification.xml(line 102)</a> <br> <span> comment: android:contentDescription:null </span> <br/> </li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_small_notification.xml#L112'>src/main/res/layout/player_small_notification.xml(line 112)</a> <br> <span> comment: android:contentDescription:null </span> <br/> </li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/call_notification.xml#L18'>src/main/res/layout/call_notification.xml(line 18)</a> <br> <span> comment: android:contentDescription:null </span> <br/></li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/call_notification.xml#L28'>src/main/res/layout/call_notification.xml(line 28)</a> <br> <span> comment: android:contentDescription:null </span> <br/> </li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_big_notification.xml#L15'>src/main/res/layout/player_big_notification.xml(line 15)</a> <br> <span>comment: android:contentDescription:null </span> <br/> </li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_big_notification.xml#L44'>src/main/res/layout/player_big_notification.xml(line 44)</a> <br> <span>comment: android:contentDescription:null </span> <br/> </li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_big_notification.xml#L100'>src/main/res/layout/player_big_notification.xml(line 100)</a> <br> <span>comment: android:contentDescription:null </span> <br/> </li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_big_notification.xml#L110'>src/main/res/layout/player_big_notification.xml(line 110)</a><br> <span> comment: android:contentDescription:null </span> <br/> </li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_big_notification.xml#L121'>src/main/res/layout/player_big_notification.xml(line 121)</a><br> <span> comment: android:contentDescription:null </span> <br/> </li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/player_big_notification.xml#L131'>src/main/res/layout/player_big_notification.xml(line 131)</a> <br> <span>comment: android:contentDescription:null </span> <br/> </li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/call_notification_rtl.xml#L18'>src/main/res/layout/call_notification_rtl.xml(line 18)</a><br> <span> comment: android:contentDescription:null </span> <br/> </li>
+                <li><a target='_blank' href='https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/TMessagesProj/src/main/res/layout/call_notification_rtl.xml#L28'>src/main/res/layout/call_notification_rtl.xml(line 28)</a><br> <span> comment: android:contentDescription:null </span> <br/> </li>
+               </ol>
+			   </td>
+			  </tr>
+			   </table>
+				</div>	
+	</div>
+</div>
+
+</div>
+
+<footer style='width:85%; position:absolute'>
+<div style="background-color:#e5e5e5;text-align:center;padding:2px;margin-top:2px;">© copyright SWAccessibilityTeam</div>
+</footer>
 </body>
 </html>
