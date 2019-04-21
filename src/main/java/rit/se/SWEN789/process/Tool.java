@@ -1,5 +1,8 @@
 package rit.se.SWEN789.process;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -16,6 +19,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
+import A11yUI.CSVParser;
+import A11yUI.HTMLGenerator;
 import rit.se.SWEN789.outputgenerator.CSVOutputGenerator;
 import rit.se.SWEN789.parser.LayoutParser;
 import rit.se.SWEN789.util.A11yCheckerUtil;
@@ -27,6 +32,8 @@ import rit.se.SWEN789.astparser.vo.ClassBean;
 public class Tool {
 
 	public Path sourceFilesPath;
+	public String githubRepoURL = "";
+	public String projectName = "Android Project";
 
 	public LayoutParser layoutParser = new LayoutParser();
 
@@ -118,16 +125,58 @@ public class Tool {
 					Validator.validate(project);
 				}
 			}
+			
 			// Generating output csv file
-			CSVOutputGenerator output = new CSVOutputGenerator(
-					Paths.get(sourceFilesPath.toString(), "report-" + System.currentTimeMillis() + ".csv"));
-			output.write(projects);
+			generateOutputResults();
+			
 		} catch (IOException | CoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	private void generateOutputResults() {
+		
+		// generate CSV
+		String reportName = "report-" + System.currentTimeMillis(); 
+		String reportCSVAbsPath = reportName + ".csv";
+		
+		CSVOutputGenerator output = new CSVOutputGenerator(Paths.get(sourceFilesPath.toString(), reportCSVAbsPath));
+		output.write(projects);
+		
+		// generate HTML
+        ArrayList<ArrayList<String>> csvResults = CSVParser.parseFile(Paths.get(sourceFilesPath.toString(), reportCSVAbsPath).toString());
+        HashMap<String, ArrayList<ArrayList<String>>> issueMap = new HashMap<>();
+
+        for (ArrayList<String> c: csvResults) { //Loop through each row of the results and format it as a Map
+            if (issueMap.containsKey(c.get(1))) { //If the key (issue type) exists, add it to the ArrayList containing other issues of that type
+                ArrayList<ArrayList<String>> typedIssues = issueMap.get(c.get(1));
+                typedIssues.add(c);
+                issueMap.put(c.get(1), typedIssues);
+            } else { //If it doesn't exist, create a new key in the Map and add this issue as its first value
+                ArrayList<ArrayList<String>> typedIssues = new ArrayList<>();
+                typedIssues.add(c);
+                issueMap.put(c.get(1), typedIssues);
+            }
+        }
+
+        // Create the HTML Generator Object, passing in the map of issues, the link to the source folder in github (formatted to view the code), and the project title
+        HTMLGenerator htmlGen = new HTMLGenerator(issueMap, githubRepoURL, projectName);
+        String fileData = htmlGen.generatePage();
+
+		String reportHTMLAbsPath = reportName + ".html";
+        try { //Generate the report file and attempt to write it to a file named A11y_report.html
+            FileOutputStream fos = new FileOutputStream(Paths.get(sourceFilesPath.toString(), reportHTMLAbsPath).toString());
+            fos.write(fileData.getBytes());
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("File not Found");
+        } catch (Exception e) {
+            System.out.println("General Exception");
+        }
+	}
+	
 	private void extractTagValues(ProjectVO project, Path value) {
 		if (value.getFileName().toString().equals("dimens.xml")
 				|| value.getFileName().toString().equals("strings.xml")) {
@@ -149,8 +198,12 @@ public class Tool {
 	}
 
 	public static void main(String[] args) {
+		
 		if (args[0] != null) {
 			Tool tool = new Tool(args[0]);
+			
+			if (args.length > 1) { tool.githubRepoURL = args[1]; }
+			if (args.length > 2) { tool.projectName = args[2]; }
 			try {
 				tool.run();
 				System.out.println("Parsing Complete.");

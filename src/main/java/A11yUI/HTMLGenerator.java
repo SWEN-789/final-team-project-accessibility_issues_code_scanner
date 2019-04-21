@@ -36,9 +36,11 @@ public class HTMLGenerator {
         htmlString += startSectionContainer();
 
         for (Map.Entry<String, ArrayList<ArrayList<String>>> section : errorMap.entrySet()) { //Loop through each section of issues and create a collapsible div for each issue
-            if(section.getValue().get(1).size() > 0) {
-                htmlString += generateSection(section.getKey(), section.getValue());
-            }
+        	if (section.getValue().size() >= 2) {
+                if(section.getValue().get(1).size() > 0) {
+                    htmlString += generateSection(section.getKey(), section.getValue());
+                }
+        	}
         }
 
         htmlString += "     </div>\n"; //Close the error sections
