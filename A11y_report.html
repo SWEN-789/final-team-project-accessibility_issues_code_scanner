@@ -15,6 +15,8 @@
        #chartContainer {width: 425px; height: 425px; float: right; margin-right: 35px;}
        .canvasjs-chart-credit{ display: none !important;}
        canvas {border-bottom-left-radius: 100px !important;}
+       .hidden {display: none;}
+           .buttonDiv {text-align: center; widht: 500px;}
    </style>
 </head>
 <body>
@@ -578,30 +580,54 @@
            </div>
         </div>
      </div>
-<div id='chartContainer' class='col-md-5 col-lg-5' style='width: 500px; height: 500px'></div>
-<script type='text/javascript'>
-   window.onload = function() {
-       var options = {
-           title: {
-               text: 'Telegram'
-           },
-           data: [{
-               type: 'pie',
-               startAngle: 45,
-               legendText: '{label}',
-               indexLabel: '{label} ({y})',
-               yValueFormatString: '#,##0.#'%'',
-               dataPoints: [
-                   { label: 'Untouchable Target', y: 74 },
-                   { label: 'No Content Description', y: 408 },
-                   { label: 'Small Text Size', y: 40 },
-               ]
-           }]
-   };
-   $('#chartContainer').CanvasJSChart(options);
-}
-</script>
+<div id='chartContainer' class='col-md-5 col-lg-5' style='width: 500px; height: 500px'>
+   <div id='pieChartContainer' style='width: 500px; height: 500px'></div>
+   <div id='barChartContainer' class='hidden' style='width: 500px; height: 500px;'></div>
+   <div class='buttonDiv'>
+       <button onclick='switchChart()' id='switchChart' type='button' class='btn btn-primary'>Switch Chart</button>
    </div>
+   <script type='text/javascript'>
+       function switchChart() {
+           $('#pieChartContainer').toggleClass('hidden');
+           $('#barChartContainer').toggleClass('hidden')
+       }
+       window.onload = function() {
+           var pieOptions = {
+               title: {
+                   text: 'Telegram'
+               },
+               data: [{
+                   type: 'pie',
+                   startAngle: 45,
+                   legendText: '{label}',
+                   indexLabel: '{label} ({y})',
+                   yValueFormatString: '#,##0.#'%'',
+                   dataPoints: [
+                       { label: 'Untouchable Target', y: 74 },
+                       { label: 'No Content Description', y: 408 },
+                       { label: 'Small Text Size', y: 40 },
+                   ]
+               }]
+           };
+
+           var barOptions = {
+               title: {
+                   text: 'Telegram'
+               },
+               data: [{
+                   type: 'column',
+                   dataPoints: [
+                       { label: 'Untouchable Target', y: 74 },
+                       { label: 'No Content Description', y: 408 },
+                       { label: 'Small Text Size', y: 40 },
+                   ]
+               }]
+           };
+           $('#pieChartContainer').CanvasJSChart(pieOptions);
+           $('#barChartContainer').CanvasJSChart(barOptions);
+       }
+   </script>
+</div>   </div>
 </div>
 </body>
 </html>
