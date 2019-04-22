@@ -124,14 +124,30 @@ public class HTMLGenerator {
                 "                   </span>\n" +
                 "               </div>\n" +
                 "               <div class='issueContainer collapse in' id='div_" + strippedTitle + "'>\n" +
-                "                   <ol>\n";
+//                "                   <ol>\n";
+        		"           	<table class=\"table\">\n" + 
+        		"             		<thead class=\"thead-light\">\n" + 
+        		"               		<tr>\n" + 
+        		"                 			<th scope=\"col\">#</th>\n" + 
+        		"                 			<th scope=\"col\">Element</th>\n" + 
+        		"                 			<th scope=\"col\">Comment</th>\n" + 
+        		"                 			<th scope=\"col\">Location</th>\n" + 
+        		"               		</tr>\n" + 
+        		"             		</thead>\n" + 
+        		"             		<tbody>\n" + 
+        		"";
 
+        int identifier = 0;
         for(ArrayList<String> issue : section) { //Add each issue to the report
-            returnString += generateIssue(issue);
+//            returnString += generateIssue(issue);
+            returnString += generateIssueTable(++identifier, issue);
         }
 
         //Close the containers and return the string
-        returnString +=    "               </ol>\n" +
+        returnString +=    
+//        		"               </ol>\n" +
+                "               	</tbody>\n" + 
+                "           	</table>" +
                 "           </div>\n" +
                 "        </div>\n";
 
@@ -148,6 +164,21 @@ public class HTMLGenerator {
         return "                <li>" + generateLink(issue) + " comment: " + issue.get(6) + "</li>\n";
     }
 
+    /**
+     * Generates a formatted HTML <tr> tag for each issue
+     * @param issue A specific accessibility issue
+     * @return trString The formatted <tr> HTML for an issue
+     */
+    public String generateIssueTable(int id, ArrayList<String> issue) {
+		return "               			<tr>\n" + 
+				"                 			<th scope=\"row\">" + id + "</th>\n" + 
+				"                 			<td>"+ issue.get(3) +"</td>\n" + 
+				"                 			<td>"+ issue.get(6) +"</td>\n" + 
+				"                 			<td>"+ generateLink(issue) +"</td>\n" + 
+				"               		</tr>";
+    	
+    }
+    
     /**
      * Generates a formatted HTML <a> tag for each issue (allows linking to the specific line in the GitHub repo)
      * @param issue A specific accessibility issue
