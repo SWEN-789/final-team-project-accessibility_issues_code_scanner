@@ -199,7 +199,9 @@ public class HTMLGenerator {
         String labelString = "";
 
         for (Map.Entry<String, ArrayList<ArrayList<String>>> section : errorMap.entrySet()) { //Loop through the entries in the map and count the list of issues
-            labelString +=     "                       { label: '" + section.getKey() + "', y: " + section.getValue().size() + " },\n";
+        	if (!section.getKey().equals("")) {
+        		labelString +=     "                       { label: '" + section.getKey() + "', y: " + section.getValue().size() + " },\n";
+        	}
         }
 
         String returnString =   "<div id='chartContainer' class='col-md-5 col-lg-5' style='width: 500px; height: 500px'>\n" +
