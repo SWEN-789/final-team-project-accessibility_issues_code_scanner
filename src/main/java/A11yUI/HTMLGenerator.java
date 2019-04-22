@@ -185,9 +185,13 @@ public class HTMLGenerator {
      * @return anchorString The formatted <a> tag
      */
     public String generateLink(ArrayList<String> issue) {
-        String anchorLink = githubLink + issue.get(2);
+        if (githubLink != null && githubLink.length() > 0) {
+            String anchorLink = githubLink + issue.get(2);
 
-        return "<a target='_blank' href='" + anchorLink + "#L" + issue.get(4) + "'>" + issue.get(2) + "(line " + issue.get(4) + ")</a>";
+            return "<a target='_blank' href='" + anchorLink + "#L" + issue.get(4) + "'>" + issue.get(2) + "(line " + issue.get(4) + ")</a>";
+        } else {
+            return "<span>" + issue.get(2) + " (line " + issue.get(4) + ")</span>";
+        }
     }
 
     /**
