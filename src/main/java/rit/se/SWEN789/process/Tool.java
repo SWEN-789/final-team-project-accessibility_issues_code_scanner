@@ -202,8 +202,8 @@ public class Tool {
 		if (args[0] != null) {
 			Tool tool = new Tool(args[0]);
 			
-			if (args.length > 1) { tool.githubRepoURL = args[1]; }
-			if (args.length > 2) { tool.projectName = args[2]; }
+			if (args.length > 1) { tool.projectName = args[1]; }
+			if (args.length > 2) { tool.githubRepoURL = args[2]; }
 			try {
 				tool.run();
 				System.out.println("Parsing Complete.");

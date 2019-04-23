@@ -116,7 +116,8 @@ public class HTMLGenerator {
         String strippedTitle = sectionTitle.replaceAll("\\s","-"); //Format the Title as an ID (to allow for collapsible divs
 
         //Creates the container and list for the issues
-        String returnString =   "           <div class='section'>\n" +
+        String returnString =   
+        		"           <div class='section'>\n" +
                 "               <div style='display: inline-block'>" +
                 "                   <span style='text-decoration: underline' class='h2'>" + sectionTitle + "</span>\n" +
                 "                   <span>\n" +
@@ -124,7 +125,9 @@ public class HTMLGenerator {
                 "                   </span>\n" +
                 "               </div>\n" +
                 "               <div class='issueContainer collapse in' id='div_" + strippedTitle + "'>\n" +
-//                "                   <ol>\n";
+                				
+                				generateIssueDocumentation(sectionTitle) +
+                				
         		"           	<table class=\"table\">\n" + 
         		"             		<thead class=\"thead-light\">\n" + 
         		"               		<tr>\n" + 
@@ -145,7 +148,6 @@ public class HTMLGenerator {
 
         //Close the containers and return the string
         returnString +=    
-//        		"               </ol>\n" +
                 "               	</tbody>\n" + 
                 "           	</table>" +
                 "           </div>\n" +
@@ -177,6 +179,48 @@ public class HTMLGenerator {
 				"                 			<td>"+ generateLink(issue) +"</td>\n" + 
 				"               		</tr>";
     	
+    }
+    
+    public String generateIssueDocumentation(String sectionTitle) {
+    	String documentation = "";
+    	if (sectionTitle.equals("No Content Description")) {
+    		documentation += 
+    				"                 <span class='h4'>Definition <br></span>\n" + 
+    				"                 <span>\n" + 
+    				"                   It's important to provide useful and descriptive labels that explain the meaning and purpose of each interactive element to users.\n" + 
+    				"                   When labeling graphical elements, such as ImageView and ImageButton objects, use the <b>android:contentDescription</b> XML attribute\n" + 
+    				"                   for static elements and the <b>setContentDescription()</b> method for dynamic elements. These labels allow screen readers, such as TalkBack,\n" + 
+    				"                   to properly explain the function of a particular control to users who rely on these services.\n" + 
+    				"                   <a target='_blank' href='https://developer.android.com/guide/topics/ui/accessibility/apps.html#label-elements'>More info...</a>\n" + 
+    				"                   <br><br>\n" + 
+    				"                 </span>\n" + 
+    				"				  <span class='h4'>Occurrences in source code <br></span>\n";
+    	
+    	} else if (sectionTitle.equals("Untouchable Target")) {
+    		documentation += 
+    				"                 <span class='h4'>Definition <br></span>\n" + 
+    				"                 <span>\n" + 
+    				"                   Users should be able to navigate on their touchscreen devices by tapping, swiping, pinching, scrolling different elements on the screen.\n" + 
+    				"                   <a target='_blank' href='https://material.io/design/interaction/gestures.html#types-of-gestures'>More info...</a>\n" + 
+    				"                   <br><br>\n" + 
+    				"                 </span>\n" + 
+    				"				  <span class='h4'>Occurrences in source code <br></span>\n";
+    		
+    	
+    	} else if (sectionTitle.equals("Small Text Size")) {
+    		documentation += 
+    				"                 <span class='h4'>Definition <br></span>\n" + 
+    				"                 <span>\n" + 
+    				"                   The Android platform includes several accessibility settings, such as increased font size and magnified screen area, that users can adjust. \n" + 
+    				"                   As you develop your app, <b>you should adjust these settings yourself</b> to ensure that your app's important UI elements remain fully visible and usable.\n" + 
+    				"                   The text sizes vary depending on the sections.\n" + 
+    				"                   <a target='_blank' href='https://developer.android.com/guide/topics/ui/accessibility/apps.html#label-elements'>More info...</a>\n" + 
+    				"                   <br><br>\n" + 
+    				"                 </span>\n" + 
+    				"				  <span class='h4'>Occurrences in source code <br></span>\n";
+    	}
+    	
+    	return documentation;
     }
     
     /**
