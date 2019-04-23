@@ -11,7 +11,7 @@
        .collapseBtn { margin-bottom: 15px; margin-left: 10px;}
        #statsSection { border: 1px solid black; border-radius: 30px;}
        body {width: 90%; margin: 0 auto; background-color: #E6E6E6;}
-       .container-fluid {background-color: white; padding: 25px; border-radius: 0 0 30px 30px;}
+       .container-fluid {background-color: white; padding: 25px; border-radius: 0 0 30px 30px; min-height: 600px;}
        #chartContainer {width: 425px; height: 425px; float: right; margin-right: 35px;}
        .canvasjs-chart-credit{ display: none !important;}
        canvas {border-bottom-left-radius: 100px !important;}
@@ -31,6 +31,16 @@
                    </span>
                </div>
                <div class='issueContainer collapse in' id='div_No-Content-Description'>
+                 <span class='h4'>Definition <br></span>
+                 <span>
+                   It's important to provide useful and descriptive labels that explain the meaning and purpose of each interactive element to users.
+                   When labeling graphical elements, such as ImageView and ImageButton objects, use the <b>android:contentDescription</b> XML attribute
+                   for static elements and the <b>setContentDescription()</b> method for dynamic elements. These labels allow screen readers, such as TalkBack,
+                   to properly explain the function of a particular control to users who rely on these services.
+                   <a target='_blank' href='https://developer.android.com/guide/topics/ui/accessibility/apps.html#label-elements'>More info...</a>
+                   <br><br>
+                 </span>
+				  <span class='h4'>Occurrences in source code <br></span>
            	<table class="table">
              		<thead class="thead-light">
                		<tr>
