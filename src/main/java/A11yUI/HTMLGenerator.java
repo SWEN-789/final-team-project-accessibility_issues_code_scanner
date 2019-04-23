@@ -77,7 +77,7 @@ public class HTMLGenerator {
                 "       .collapseBtn { margin-bottom: 15px; margin-left: 10px;}\n" +
                 "       #statsSection { border: 1px solid black; border-radius: 30px;}\n" +
                 "       body {width: 90%; margin: 0 auto; background-color: #E6E6E6;}\n" +
-                "       .container-fluid {background-color: white; padding: 25px; border-radius: 0 0 30px 30px;}\n" +
+                "       .container-fluid {background-color: white; padding: 25px; border-radius: 0 0 30px 30px; min-height: 600px;}\n" +
                 "       #chartContainer {width: 425px; height: 425px; float: right; margin-right: 35px;}\n" +
                 "       .canvasjs-chart-credit{ display: none !important;}\n" +
                 "       canvas {border-bottom-left-radius: 100px !important;}\n" +
